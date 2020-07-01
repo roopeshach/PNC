@@ -11,7 +11,7 @@ class Content(models.Model):
 class Slider(models.Model):
     head = models.CharField( max_length=254)
     content = models.TextField()
-    photo = models.ImageField( upload_to="slider")
+    photo = models.ImageField( upload_to="slider/")
 
 class Description(models.Model):
     header = models.CharField(max_length=254)
