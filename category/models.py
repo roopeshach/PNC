@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils.text import slugify 
+
 
 # Create your models here.
 class Department(models.Model):
@@ -14,4 +16,11 @@ class Department(models.Model):
     feature_image = models.ImageField( upload_to='department/')
     is_active = models.CharField(max_length=1 , choices=IS_ACTIVE)
     
-    
+    slug = models.SlugField(unique=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Department, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
