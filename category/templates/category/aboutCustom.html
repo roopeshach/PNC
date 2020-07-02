@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-{{dept.name}}
+{{page.name}}
 {% endblock title %}
 {% block content %}
 <body>
@@ -147,7 +147,7 @@
                 <div class="col-md-12">
                     <h6><a href="index.html">Home</a></h6>
                     <h6><a href="blog.html">About</a></h6>
-                    <h6><span class="page-active">{{dept.name}}</span></h6>
+                    <h6><span class="page-active">{{page.name}}</span></h6>
                 </div>
             </div>
         </div>
@@ -158,21 +158,22 @@
         <div class="row">
 
             <!-- Here begin Main Content -->
-            <div class="col-md-8">
+            <div class="col-md-12">
 
                 <div class="row">
                     <div class="col-md-12">
                         <div class="blog-post-container">
                             <div class="blog-post-image">
-                                <img src="{{dept.feature_image.url}}" alt="{{dept.name}}">
+                                <img src="{{page.image.url}}" alt="{{page.name}}">
                                 
                             </div> <!-- /.blog-post-image -->
                             <div class="blog-post-inner">
-                                <h3 class="blog-post-title">{{dept.name}}</h3>
+                                <h3 class="blog-post-title">{{page.name}}</h3>
                                 <p>
                                 {% autoescape on %}
-                                {{dept.content |safe}}
+                                {{page.content |safe}}
                                 {% endautoescape %}
+                                
                                 </p>
                                 
                             </div>
@@ -187,104 +188,7 @@
             </div> <!-- /.col-md-8 -->
 
             <!-- Here begin Sidebar -->
-            <div class="col-md-4">
-                <div class="widget-main">
-                    <div class="widget-main-title">
-                        <h4 class="widget-title">Head of Department</h4>
-                    </div>
-                    <div class="widget-inner">
-                        <div class="prof-list-item clearfix">
-                           <div class="prof-thumb">
-                                <img src="{{dept.dean_image.url}}" alt="{{dept.dean}}">
-                            </div> <!-- /.prof-thumb -->
-                            <div class="prof-details">
-                                <h5 class="prof-name-list">{{dept.dean}}</h5>
-                                <p class="small-text">Sed ut lectus ac lacus molestie posuere non tincidunt arcu.</p>
-                            </div> <!-- /.prof-details -->
-                        </div> <!-- /.prof-list-item -->
-                        
-                        
-                    </div> <!-- /.widget-inner -->
-                </div> <!-- /.widget-main -->
-                
-
-        
-
-                <div class="widget-main">
-                    <div class="widget-main-title">
-                        <h4 class="widget-title">Our Gallery</h4>
-                    </div>
-                    <div class="widget-inner">
-                        <div class="gallery-small-thumbs clearfix">
-                            <div class="thumb-small-gallery">
-                                <a class="fancybox" rel="gallery1" href="images/gallery/gallery1.jpg" title="Gallery Tittle One">
-                                    <img src="images/gallery/gallery-small-thumb1.jpg" alt="" />
-                                </a>
-                            </div>
-                            <div class="thumb-small-gallery">
-                                <a class="fancybox" rel="gallery1" href="images/gallery/gallery2.jpg" title="Gallery Tittle One">
-                                    <img src="images/gallery/gallery-small-thumb2.jpg" alt="" />
-                                </a>
-                            </div>
-                            <div class="thumb-small-gallery">
-                                <a class="fancybox" rel="gallery1" href="images/gallery/gallery3.jpg" title="Gallery Tittle One">
-                                    <img src="images/gallery/gallery-small-thumb3.jpg" alt="" />
-                                </a>
-                            </div>
-                            <div class="thumb-small-gallery">
-                                <a class="fancybox" rel="gallery1" href="images/gallery/gallery4.jpg" title="Gallery Tittle One">
-                                    <img src="images/gallery/gallery-small-thumb4.jpg" alt="" />
-                                </a>
-                            </div>
-                            <div class="thumb-small-gallery">
-                                <a class="fancybox" rel="gallery1" href="images/gallery/gallery5.jpg" title="Gallery Tittle One">
-                                    <img src="images/gallery/gallery-small-thumb5.jpg" alt="" />
-                                </a>
-                            </div>
-                            <div class="thumb-small-gallery">
-                                <a class="fancybox" rel="gallery1" href="images/gallery/gallery6.jpg" title="Gallery Tittle One">
-                                    <img src="images/gallery/gallery-small-thumb6.jpg" alt="" />
-                                </a>
-                            </div>
-                            <div class="thumb-small-gallery">
-                                <a class="fancybox" rel="gallery1" href="images/gallery/gallery7.jpg" title="Gallery Tittle One">
-                                    <img src="images/gallery/gallery-small-thumb7.jpg" alt="" />
-                                </a>
-                            </div>
-                            <div class="thumb-small-gallery">
-                                <a class="fancybox" rel="gallery1" href="images/gallery/gallery8.jpg" title="Gallery Tittle One">
-                                    <img src="images/gallery/gallery-small-thumb8.jpg" alt="" />
-                                </a>
-                            </div>
-                        </div> <!-- /.galler-small-thumbs -->
-                    </div> <!-- /.widget-inner -->
-                </div> <!-- /.widget-main -->
-
-                <div class="widget-main">
-                    <div class="widget-main-title">
-                        <h4 class="widget-title">Testimonial</h4>
-                    </div>
-                    <div class="widget-inner">
-                        <div id="slider-testimonials">
-                            <ul>
-                                <li>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, quos, veniam optio voluptas hic delectus soluta odit nemo harum <strong class="dark-text">Shannon D. Edwards</strong></p>
-                                </li>
-                                <li>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, quos, veniam optio voluptas hic delectus soluta odit nemo harum <strong class="dark-text">Shannon D. Edwards</strong></p>
-                                </li>
-                                <li>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, quos, veniam optio voluptas hic delectus soluta odit nemo harum <strong class="dark-text">Shannon D. Edwards</strong></p>
-                                </li>
-                            </ul>
-                            <a class="prev fa fa-angle-left" href=""></a>
-                            <a class="next fa fa-angle-right" href=""></a>
-                        </div>
-                    </div> <!-- /.widget-inner -->
-                </div> <!-- /.widget-main -->
-
-            </div> <!-- /.col-md-4 -->
-    
+           
         </div> <!-- /.row -->
     </div> <!-- /.container -->
 

@@ -16,3 +16,8 @@ class Slider(models.Model):
 class Description(models.Model):
     header = models.CharField(max_length=254)
     content = models.TextField()
+
+class Message_From_Chief(models.Model):
+    chief_name = models.CharField( max_length=254)
+    message = models.TextField()
+    image = models.ImageField( upload_to="chiefs/", height_field=None, width_field=None, max_length=None)

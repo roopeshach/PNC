@@ -99,10 +99,12 @@
                         
                                 </ul>
                             </li>
-                            <li><a href="#">Courses</a>
+                            <li><a href="#">Programs</a>
                                 <ul class="sub-menu">
-                                    <li><a href="courses.html">Courses List</a></li>
-                                    <li><a href="course-single.html">Course Single</a></li>
+                                {% for program in programs %}
+                                <li><a href="/about_program/{{program.slug}}">{{program.name}}</a></li>
+                                {% endfor %}
+                                
                                 </ul>
                             </li>
                             <li><a href="#">Blog Entries</a>
@@ -189,33 +191,28 @@
                                 <h4 class="widget-title">Latest News</h4>
                             </div> <!-- /.widget-main-title -->
                             <div class="widget-inner">
+                                
+                                {% for n in news %}
                                 <div class="blog-list-post clearfix">
                                     <div class="blog-list-thumb">
-                                        <a href="blog-single.html"><img src="{% static 'images/blog/blog-small-thumb1.jpg' %}" alt=""></a>
+                                        <a href="blog-single.html">
+                                        {% if n.image %}
+                                        <img src="{{n.image.url}}" alt="{{n.title}}">
+                                        {% else %}
+                                        <img src="{% static 'images/campus/campus-logo1.jpg' %}" alt="">
+                                        {% endif %}
+                                        
+                                        </a>
                                     </div>
                                     <div class="blog-list-details">
-                                        <h5 class="blog-list-title"><a href="blog-single.html">Graduate Open Day at the Ruskin</a></h5>
-                                        <p class="blog-list-meta small-text"><span><a href="#">12 January 2014</a></span> with <span><a href="#">3 comments</a></span></p>
+                                        <h5 class="blog-list-title"><a href="blog-single.html">{{n.title}}</a></h5>
+                                        <p class="blog-list-meta small-text">
+                                        {{n.content |safe|truncatewords:"7  "|linebreaks}}
+                                        <a href="#">read more</a>
+                                        </p>
                                     </div>
                                 </div> <!-- /.blog-list-post -->
-                                <div class="blog-list-post clearfix">
-                                    <div class="blog-list-thumb">
-                                        <a href="blog-single.html"><img src="{% static 'images/blog/blog-small-thumb2.jpg' %}" alt=""></a>
-                                    </div>
-                                    <div class="blog-list-details">
-                                        <h5 class="blog-list-title"><a href="blog-single.html">Visiting Artists: Giles Bailey</a></h5>
-                                        <p class="blog-list-meta small-text"><span><a href="#">12 January 2014</a></span> with <span><a href="#">3 comments</a></span></p>
-                                    </div>
-                                </div> <!-- /.blog-list-post -->
-                                <div class="blog-list-post clearfix">
-                                    <div class="blog-list-thumb">
-                                        <a href="blog-single.html"><img src="{% static 'images/blog/blog-small-thumb3.jpg' %}" alt=""></a>
-                                    </div>
-                                    <div class="blog-list-details">
-                                        <h5 class="blog-list-title"><a href="blog-single.html">Workshop: Theories of the Image</a></h5>
-                                        <p class="blog-list-meta small-text"><span><a href="#">12 January 2014</a></span> with <span><a href="#">3 comments</a></span></p>
-                                    </div>
-                                </div> <!-- /.blog-list-post -->
+                                {% endfor %}
                             </div> <!-- /.widget-inner -->
                         </div> <!-- /.widget-main -->
                     </div> <!-- /col-md-6 -->
@@ -224,42 +221,34 @@
                     <div class="col-md-6">
                         <div class="widget-main">
                             <div class="widget-main-title">
-                                <h4 class="widget-title">Events</h4>
+                                <h4 class="widget-title">Latest Notices</h4>
                             </div> <!-- /.widget-main-title -->
                             <div class="widget-inner">
-                                <div class="event-small-list clearfix">
-                                    <div class="calendar-small">
-                                        <span class="s-month">Jan</span>
-                                        <span class="s-date">24</span>
+                                
+                                {% for notice in notices %}
+                                <div class="blog-list-post clearfix">
+                                    <div class="blog-list-thumb">
+                                        <a href="blog-single.html">
+                                        {% if notice.image %}
+                                        <img src="{{notice.image.url}}" alt="{{notice.title}}">
+                                        {% else %}
+                                        <img src="{% static 'images/campus/campus-logo1.jpg' %}" alt="">
+                                        {% endif %}
+                                        
+                                        </a>
                                     </div>
-                                    <div class="event-small-details">
-                                        <h5 class="event-small-title"><a href="event-single.html">Nelson Mandela Memorial Tribute</a></h5>
-                                        <p class="event-small-meta small-text">Cramton Auditorium 9:00 AM to 1:00 PM</p>
+                                    <div class="blog-list-details">
+                                        <h5 class="blog-list-title"><a href="blog-single.html">{{notice.title}}</a></h5>
+                                        <p class="blog-list-meta small-text">
+                                        {{notice.content |safe|truncatewords:"50"|linebreaks}}
+                                        <a href="#">read more</a>
+                                        </p>
                                     </div>
-                                </div>
-                                <div class="event-small-list clearfix">
-                                    <div class="calendar-small">
-                                        <span class="s-month">Jan</span>
-                                        <span class="s-date">24</span>
-                                    </div>
-                                    <div class="event-small-details">
-                                        <h5 class="event-small-title"><a href="event-single.html">OVADA Oxford Open</a></h5>
-                                        <p class="event-small-meta small-text">Posner Center 4:30 PM to 6:00 PM</p>
-                                    </div>
-                                </div>
-                                <div class="event-small-list clearfix">
-                                    <div class="calendar-small">
-                                        <span class="s-month">Jan</span>
-                                        <span class="s-date">24</span>
-                                    </div>
-                                    <div class="event-small-details">
-                                        <h5 class="event-small-title"><a href="event-single.html">Filming Objects And Sculpture</a></h5>
-                                        <p class="event-small-meta small-text">A70 Cyert Hall 12:00 PM to 1:00 PM</p>
-                                    </div>
-                                </div>
+                                </div> <!-- /.blog-list-post -->
+                                {% endfor %}
                             </div> <!-- /.widget-inner -->
                         </div> <!-- /.widget-main -->
-                    </div> <!-- /.col-md-6 -->
+                    </div> <!-- /col-md-6 -->
                     
                 </div> <!-- /.row -->
                 
@@ -325,27 +314,60 @@
 
                 <div class="widget-main">
                     <div class="widget-main-title">
-                        <h4 class="widget-title">Testimonial</h4>
+                        <h4 class="widget-title">Message From Chief</h4>
                     </div>
                     <div class="widget-inner">
-                        <div id="slider-testimonials">
-                            <ul>
-                                <li>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, quos, veniam optio voluptas hic delectus soluta odit nemo harum <strong class="dark-text">Shannon D. Edwards</strong></p>
-                                </li>
-                                <li>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, quos, veniam optio voluptas hic delectus soluta odit nemo harum <strong class="dark-text">Shannon D. Edwards</strong></p>
-                                </li>
-                                <li>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, quos, veniam optio voluptas hic delectus soluta odit nemo harum <strong class="dark-text">Shannon D. Edwards</strong></p>
-                                </li>
-                            </ul>
-                            <a class="prev fa fa-angle-left" href=""></a>
-                            <a class="next fa fa-angle-right" href=""></a>
-                        </div>
+                        <div class="prof-list-item clearfix">
+                           <div class="prof-chief prof-thumb">
+                                <img src="{{messages.image.url}}" alt="{{messages.chief_name}}">
+                                
+                            </div> <!-- /.prof-thumb -->
+                            
+                            <div class="prof-details">
+                            <br>
+                                <h5 class="prof-name-list">{{messages.chief_name}}</h5>
+                                <p class="small-text">
+                                {{messages.message}}
+                                </p>
+                            </div> <!-- /.prof-details -->
+                        </div> <!-- /.prof-list-item -->
+                        
+                        
                     </div> <!-- /.widget-inner -->
                 </div> <!-- /.widget-main -->
+                <!--EVENTS-->
 
+                <div class="widget-main">
+                            <div class="widget-main-title">
+                                <h4 class="widget-title">Upcoming Events</h4>
+                            </div> <!-- /.widget-main-title -->
+                            <div class="widget-inner">
+                                
+                                {% for event in events %}
+                                <div class="blog-list-post clearfix">
+                                    <div class="blog-list-thumb">
+                                        <a href="blog-single.html">
+                                        {% if event.image %}
+                                        <img src="{{event.image.url}}" alt="{{event.title}}">
+                                        {% else %}
+                                        <img src="{% static 'images/campus/campus-logo1.jpg' %}" alt="">
+                                        {% endif %}
+                                        
+                                        </a>
+                                    </div>
+                                    <div class="blog-list-details">
+                                        <h5 class="blog-list-title"><a href="blog-single.html">{{event.title}}</a></h5>
+                                        <p class="blog-list-meta small-text">
+                                        {{event.content |safe|truncatewords:"7"|linebreaks}}
+                                        <a href="#">read more</a>
+                                        </p>
+                                    </div>
+                                </div> <!-- /.blog-list-post -->
+                                {% endfor %}
+                            </div> <!-- /.widget-inner -->
+                        </div> <!-- /.widget-main -->
+
+                        <!--Gallery-->
                 <div class="widget-main">
                     <div class="widget-main-title">
                         <h4 class="widget-title">Our Gallery</h4>
