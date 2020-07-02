@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-{{dept.name}}
+{{program.name}}
 {% endblock title %}
 {% block content %}
 <body>
@@ -99,7 +99,7 @@
                         
                                 </ul>
                             </li>
-                            <li><a href="#">Courses</a>
+                            <li><a href="#">Programs</a>
                                 <ul class="sub-menu">
                                 {% for program in programs %}
                                 <li><a href="/about_program/{{program.slug}}">{{program.name}}</a></li>
@@ -147,7 +147,7 @@
                 <div class="col-md-12">
                     <h6><a href="index.html">Home</a></h6>
                     <h6><a href="blog.html">About</a></h6>
-                    <h6><span class="page-active">{{dept.name}}</span></h6>
+                    <h6><span class="page-active">{{program.name}}</span></h6>
                 </div>
             </div>
         </div>
@@ -164,12 +164,12 @@
                     <div class="col-md-12">
                         <div class="blog-post-container">
                             <div class="blog-post-image">
-                                <img src="{{dept.feature_image.url}}" alt="{{dept.name}}">
+                                <img src="{{program.feature_image.url}}" alt="{{program.name}}">
                                 
                             </div> <!-- /.blog-post-image -->
                             <div class="blog-post-inner">
-                                <h3 class="blog-post-title">{{dept.name}}</h3>
-                                <p>{{dept.content}}</p>
+                                <h3 class="blog-post-title">{{program.name}}</h3>
+                                <p>{{program.content}}</p>
                                 
                             </div>
                         </div> <!-- /.blog-post-container -->
@@ -186,15 +186,15 @@
             <div class="col-md-4">
                 <div class="widget-main">
                     <div class="widget-main-title">
-                        <h4 class="widget-title">Head of Department</h4>
+                        <h4 class="widget-title">Head of Program</h4>
                     </div>
                     <div class="widget-inner">
                         <div class="prof-list-item clearfix">
                            <div class="prof-thumb">
-                                <img src="{{dept.dean_image.url}}" alt="{{dept.dean}}">
+                                <img src="{{program.dean_image.url}}" alt="{{program.dean}}">
                             </div> <!-- /.prof-thumb -->
                             <div class="prof-details">
-                                <h5 class="prof-name-list">{{dept.dean}}</h5>
+                                <h5 class="prof-name-list">{{program.dean}}</h5>
                                 <p class="small-text">Sed ut lectus ac lacus molestie posuere non tincidunt arcu.</p>
                             </div> <!-- /.prof-details -->
                         </div> <!-- /.prof-list-item -->
