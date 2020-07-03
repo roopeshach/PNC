@@ -2,8 +2,10 @@
 {% load static %}
 
 {% block title %}
-{{dept.name}}
+All News
 {% endblock title %}
+
+
 {% block content %}
 <body>
 
@@ -101,7 +103,7 @@
                         
                                 </ul>
                             </li>
-                            <li><a href="#">Programs</a>
+                            <li><a href="#">Courses</a>
                                 <ul class="sub-menu">
                                 {% for program in programs %}
                                 <li><a href="/about_program/{{program.slug}}">{{program.name}}</a></li>
@@ -125,7 +127,7 @@
                             </li>
                             <li><a href="contact.html">Contact</a></li>
                             <li><a href="/news/">News</a></li>
-                <li><a href="/notice/">Notice</a></li>
+                            <li><a href="/notice/">Notice</a></li>
                         </ul> <!-- /.main-menu -->
 
                         <ul class="social-icons pull-right">
@@ -150,178 +152,81 @@
             <div class="row">
                 <div class="col-md-12">
                     <h6><a href="index.html">Home</a></h6>
-                    <h6><a href="blog.html">About</a></h6>
-                    <h6><span class="page-active">{{dept.name}}</span></h6>
+                    <h6><a href="blog.html">All News</a></h6>
                 </div>
             </div>
         </div>
     </div>
-
+<br>
 
     <div class="container">
-        <div class="row">
+            <div class="row">
+                <div class="search-form">
+                        <form name="search_form" method="get" action="#" class="search_form">
+                            <input type="text" name="s" placeholder="Search the site..." title="Search the site..." class="field_search">
+                        </form>
+                </div>
+                <!-- Here begin Main Content -->
+                <div class="col-md-12">
 
-            <!-- Here begin Main Content -->
-            <div class="col-md-8">
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="blog-post-container">
-                            <div class="blog-post-image">
-                                <img src="{{dept.feature_image.url}}" alt="{{dept.name}}">
-                                
-                            </div> <!-- /.blog-post-image -->
-                            <div class="blog-post-inner">
-                                <h3 class="blog-post-title">{{dept.name}}</h3>
-                                <p>
-                                {% autoescape on %}
-                                {{dept.content |safe}}
-                                {% endautoescape %}
-                                </p>
-                                
-                            </div>
-                        </div> <!-- /.blog-post-container -->
-                    </div> <!-- /.col-md-12 -->
-                </div> <!-- /.row -->
-
-             
-           
-                
-
-            </div> <!-- /.col-md-8 -->
-
-            <!-- Here begin Sidebar -->
-            <div class="col-md-4">
-                <div class="widget-main">
-                    <div class="widget-main-title">
-                        <h4 class="widget-title">Head of Department</h4>
-                    </div>
-                    <div class="widget-inner">
-                        <div class="prof-list-item clearfix">
-                           <div class="prof-thumb">
-                                <img src="{{dept.dean_image.url}}" alt="{{dept.dean}}">
-                            </div> <!-- /.prof-thumb -->
-                            <div class="prof-details">
-                                <h5 class="prof-name-list">{{dept.dean}}</h5>
-                                <p class="small-text">Sed ut lectus ac lacus molestie posuere non tincidunt arcu.</p>
-                            </div> <!-- /.prof-details -->
-                        </div> <!-- /.prof-list-item -->
+                    <div class="row">
                         
-                        
-                    </div> <!-- /.widget-inner -->
-                </div> <!-- /.widget-main -->
-                
-                <!--NEWS for this dept-->
-                <div class="widget-main">
-                            <div class="widget-main-title">
-                                <h4 class="widget-title">Latest News</h4>
-                            </div> <!-- /.widget-main-title -->
-                            <div class="widget-inner">
-                                
-                                {% for n in news %}
-                                <div class="blog-list-post clearfix">
-                                    <div class="blog-list-thumb">
-                                        <a href="blog-single.html">
-                                        {% if n.image %}
-                                        <img src="{{n.image.url}}" alt="{{n.title}}">
-                                        {% else %}
-                                        <img src="{% static 'images/campus/campus-logo1.jpg' %}" alt="">
-                                        {% endif %}
-                                        
-                                        </a>
-                                    </div>
-                                    <div class="blog-list-details">
-                                        <h5 class="blog-list-title"><a href="/news/{{n.slug}}">{{n.title}}</a></h5>
-                                        <p class="blog-list-meta small-text">
-                                        {{n.content |safe|truncatewords:"7  "|linebreaks}}
-                                        <a href="#">read more</a>
-                                        </p>
-                                    </div>
-                                </div> <!-- /.blog-list-post -->
-                                {% endfor %}
-                            </div> <!-- /.widget-inner -->
-                        </div> <!-- /.widget-main -->
         
+        {% for n in news.object_list %}
+     <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5>
+                <a data-toggle="collapse" data-parent="#accordion" href="#{{n.id}}">
+                     {{n.title}}
+                </a>
+                <p style="float:right">{% if n.department %}{{n.department}}{% else %}{{n.program}}{% endif %}</p>
+                </h5>
+            </div>
+        <div id="{{n.id}}" class="panel-collapse collapse">
+            <div class="panel-body">
+                {% autoescape on %}
+                {{n.content|safe}}
+                {% endautoescape %}
+        </div>
+    </div>
+</div>   
 
-                <div class="widget-main">
-                    <div class="widget-main-title">
-                        <h4 class="widget-title">Our Gallery</h4>
-                    </div>
-                    <div class="widget-inner">
-                        <div class="gallery-small-thumbs clearfix">
-                            <div class="thumb-small-gallery">
-                                <a class="fancybox" rel="gallery1" href="images/gallery/gallery1.jpg" title="Gallery Tittle One">
-                                    <img src="images/gallery/gallery-small-thumb1.jpg" alt="" />
-                                </a>
-                            </div>
-                            <div class="thumb-small-gallery">
-                                <a class="fancybox" rel="gallery1" href="images/gallery/gallery2.jpg" title="Gallery Tittle One">
-                                    <img src="images/gallery/gallery-small-thumb2.jpg" alt="" />
-                                </a>
-                            </div>
-                            <div class="thumb-small-gallery">
-                                <a class="fancybox" rel="gallery1" href="images/gallery/gallery3.jpg" title="Gallery Tittle One">
-                                    <img src="images/gallery/gallery-small-thumb3.jpg" alt="" />
-                                </a>
-                            </div>
-                            <div class="thumb-small-gallery">
-                                <a class="fancybox" rel="gallery1" href="images/gallery/gallery4.jpg" title="Gallery Tittle One">
-                                    <img src="images/gallery/gallery-small-thumb4.jpg" alt="" />
-                                </a>
-                            </div>
-                            <div class="thumb-small-gallery">
-                                <a class="fancybox" rel="gallery1" href="images/gallery/gallery5.jpg" title="Gallery Tittle One">
-                                    <img src="images/gallery/gallery-small-thumb5.jpg" alt="" />
-                                </a>
-                            </div>
-                            <div class="thumb-small-gallery">
-                                <a class="fancybox" rel="gallery1" href="images/gallery/gallery6.jpg" title="Gallery Tittle One">
-                                    <img src="images/gallery/gallery-small-thumb6.jpg" alt="" />
-                                </a>
-                            </div>
-                            <div class="thumb-small-gallery">
-                                <a class="fancybox" rel="gallery1" href="images/gallery/gallery7.jpg" title="Gallery Tittle One">
-                                    <img src="images/gallery/gallery-small-thumb7.jpg" alt="" />
-                                </a>
-                            </div>
-                            <div class="thumb-small-gallery">
-                                <a class="fancybox" rel="gallery1" href="images/gallery/gallery8.jpg" title="Gallery Tittle One">
-                                    <img src="images/gallery/gallery-small-thumb8.jpg" alt="" />
-                                </a>
-                            </div>
-                        </div> <!-- /.galler-small-thumbs -->
-                    </div> <!-- /.widget-inner -->
-                </div> <!-- /.widget-main -->
+        {% endfor %}
+ 
+<br>
+{% if news.has_other_pages %}
+  <ul class="pagination justify-content-center">
+    {% if news.has_previous %}
+      <li class="page-item"><a class="page-link" tabindex="-1" href="?page={{ news.previous_page_number }}">Previous</a></li>
+    {% else %}
+      <li class="page-item page-link disabled"><span>Previous</span></li>
+    {% endif %}
+    {% for i in news.paginator.page_range %}
+      {% if news.number == i %}
+        <li class="page-link active-pg"><span>{{ i }} <span class="sr-only active">(current)</span></span></li>
+      {% else %}
+        <li class="page-item"><a class="page-link"href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if news.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ news.next_page_number }}">Next</a></li>
+    {% else %}
+      <li class="page-item page-link disabled"><span>Next</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+<br><br><br>
 
-                <div class="widget-main">
-                    <div class="widget-main-title">
-                        <h4 class="widget-title">Testimonial</h4>
-                    </div>
-                    <div class="widget-inner">
-                        <div id="slider-testimonials">
-                            <ul>
-                                <li>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, quos, veniam optio voluptas hic delectus soluta odit nemo harum <strong class="dark-text">Shannon D. Edwards</strong></p>
-                                </li>
-                                <li>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, quos, veniam optio voluptas hic delectus soluta odit nemo harum <strong class="dark-text">Shannon D. Edwards</strong></p>
-                                </li>
-                                <li>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, quos, veniam optio voluptas hic delectus soluta odit nemo harum <strong class="dark-text">Shannon D. Edwards</strong></p>
-                                </li>
-                            </ul>
-                            <a class="prev fa fa-angle-left" href=""></a>
-                            <a class="next fa fa-angle-right" href=""></a>
-                        </div>
-                    </div> <!-- /.widget-inner -->
-                </div> <!-- /.widget-main -->
-
-            </div> <!-- /.col-md-4 -->
-    
-        </div> <!-- /.row -->
+            </div>
+            </div>
+        </div> 
+    </div> <!-- /.row -->
     </div> <!-- /.container -->
+    </div>
 
-
+            </body>
+            
     <!-- begin The Footer -->
     <footer class="site-footer">
         <div class="container">
