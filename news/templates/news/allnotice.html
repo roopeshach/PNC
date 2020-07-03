@@ -94,7 +94,7 @@ All notice
             <div class="container">
                 <nav class="main-navigation clearfix visible-md visible-lg" role="navigation">
                         <ul class="main-menu sf-menu">
-                            <li class="active"><a href="index.html">Home</a></li>
+                            <li class="active"><a href="/">Home</a></li>
                             <li><a href="#">Departments</a>
                                 <ul class="sub-menu">
                                 {% for department in departments %}
@@ -103,7 +103,7 @@ All notice
                         
                                 </ul>
                             </li>
-                            <li><a href="#">Courses</a>
+                            <li><a href="#">Programs</a>
                                 <ul class="sub-menu">
                                 {% for program in programs %}
                                 <li><a href="/about_program/{{program.slug}}">{{program.name}}</a></li>
@@ -164,11 +164,6 @@ All notice
 
                 <!-- Here begin Main Content -->
                 <div class="col-md-12">
-
-                    <div class="row">
-                        
-
-            
             {% for n in notice.object_list %}
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
@@ -177,7 +172,8 @@ All notice
                     <a data-toggle="collapse" data-parent="#accordion" href="#{{n.id}}">
                         {{n.title}}
                     </a>
-                    <p style="float:right">{% if n.department %}{{n.department}}{% else %}{{n.program}}{% endif %}</p>
+                        <a href="/notice/{{n.slug}}" style="float:right">&nbsp;&nbsp;View Details</a>
+                    <p style="float:right">[&nbsp;{% if n.department %}{{n.department}}{% else %}{{n.program}}{% endif %}&nbsp;] </p>
                     </h5>
                 </div>
                 <div id="{{n.id}}" class="panel-collapse collapse">
@@ -215,7 +211,6 @@ All notice
     {% endif %}
     <br>
                 
-            </div>
             </div>
         </div> 
     </div> <!-- /.row -->

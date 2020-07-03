@@ -140,7 +140,7 @@
         </div> <!-- /.nav-bar-main -->
 
     </header> <!-- /.site-header -->
-
+    <br>
 
  
     <div class="container">
@@ -199,7 +199,7 @@
                                 {% for n in news %}
                                 <div class="blog-list-post clearfix">
                                     <div class="blog-list-thumb">
-                                        <a href="blog-single.html">
+                                        <a href="/news/{{n.slug}}">
                                         {% if n.image %}
                                         <img src="{{n.image.url}}" alt="{{n.title}}">
                                         {% else %}
@@ -212,7 +212,7 @@
                                         <h5 class="blog-list-title"><a href="/news/{{n.slug}}">{{n.title}}</a></h5>
                                         <p class="blog-list-meta small-text">
                                         {{n.content |safe|truncatewords:"7  "|linebreaks}}
-                                        <a href="#">read more</a>
+                                        <a href="/news/{{n.slug}}">read more</a>
                                         </p>
                                     </div>
                                 </div> <!-- /.blog-list-post -->
@@ -232,7 +232,7 @@
                                 {% for notice in notices %}
                                 <div class="blog-list-post clearfix">
                                     <div class="blog-list-thumb">
-                                        <a href="blog-single.html">
+                                        <a href="/notice/{{notice.slug}}">
                                         {% if notice.image %}
                                         <img src="{{notice.image.url}}" alt="{{notice.title}}">
                                         {% else %}
@@ -242,10 +242,10 @@
                                         </a>
                                     </div>
                                     <div class="blog-list-details">
-                                        <h5 class="blog-list-title"><a href="blog-single.html">{{notice.title}}</a></h5>
+                                        <h5 class="blog-list-title"><a href="/notice/{{notice.slug}}">{{notice.title}}</a></h5>
                                         <p class="blog-list-meta small-text">
                                         {{notice.content |safe|truncatewords:"7"|linebreaks}}
-                                        <a href="/">read more</a>
+                                        <a href="/notice/{{notice.slug}}">read more</a>
                                         </p>
                                     </div>
                                 </div> <!-- /.blog-list-post -->

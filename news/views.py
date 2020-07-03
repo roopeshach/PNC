@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from news.models import News , Notice
-from category.models import Department, Program , Custom_Page
+from news.models import News, Notice
+from category.models import Department, Program, Custom_Page
 from home.models import Content
-from django.core.paginator import Paginator ,  EmptyPage, PageNotAnInteger
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 # Create your views here.
 
 
@@ -15,22 +16,33 @@ pages = Custom_Page.objects.all().filter(is_active="T")
 def viewNews(request, slug):
     news = News.objects.get(slug=slug)
     context_news = {
-        'content' : content,
-        'departments' : departments,
-        'programs' : programs,
-        'pages' : pages,
-        'news':news,
-
+        'content': content,
+        'departments': departments,
+        'programs': programs,
+        'pages': pages,
+        'news': news,
 
     }
-    return render(request , 'news/news.html' , context_news)
+    return render(request, 'news/news.html', context_news)
+
+
+def viewNotice(request, slug):
+    notice = Notice.objects.get(slug=slug)
+    context_notice = {
+        'content': content,
+        'departments': departments,
+        'programs': programs,
+        'pages': pages,
+        'notice': notice,
+
+    }
+    return render(request, 'news/notice.html', context_notice)
+
 
 def allNews(request):
-
     news_list = News.objects.all()
 
-
-    page = request.GET.get('page', 1)    
+    page = request.GET.get('page', 1)
     paginator = Paginator(news_list, 8)
     try:
         news = paginator.page(page)
@@ -39,24 +51,21 @@ def allNews(request):
     except EmptyPage:
         news = paginator.page(paginator.num_pages)
 
-
     context = {
-        'content' : content,
-        'departments' : departments,
-        'programs' : programs,
-        'pages' : pages,
-        'news' : news,
+        'content': content,
+        'departments': departments,
+        'programs': programs,
+        'pages': pages,
+        'news': news,
     }
     print(news)
-    return render(request , 'news/allnews.html', context)
+    return render(request, 'news/allnews.html', context)
 
 
 def allNotice(request):
-
     notice_list = Notice.objects.all()
 
-
-    page = request.GET.get('page', 1)    
+    page = request.GET.get('page', 1)
     paginator = Paginator(notice_list, 8)
     try:
         notice = paginator.page(page)
@@ -65,13 +74,12 @@ def allNotice(request):
     except EmptyPage:
         notice = paginator.page(paginator.num_pages)
 
-
     context = {
-        'content' : content,
-        'departments' : departments,
-        'programs' : programs,
-        'pages' : pages,
-        'notice' : notice,
+        'content': content,
+        'departments': departments,
+        'programs': programs,
+        'pages': pages,
+        'notice': notice,
     }
     print(notice)
-    return render(request , 'news/allnotice.html', context)
+    return render(request, 'news/allnotice.html', context)

@@ -2,10 +2,8 @@
 {% load static %}
 
 {% block title %}
-All News
+{{dept.name}}
 {% endblock title %}
-
-
 {% block content %}
 <body>
 
@@ -45,8 +43,6 @@ All News
                     </ul>
                 </li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="/news/">News</a></li>
-                <li><a href="/notice/">Notice</a></li>
             </ul> <!-- /.main_menu -->
             <ul class="social_icons">
                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -103,7 +99,7 @@ All News
 
                                 </ul>
                             </li>
-                            <li><a href="#">Courses</a>
+                            <li><a href="#">Programs</a>
                                 <ul class="sub-menu">
                                 {% for program in programs %}
                                 <li><a href="/about_program/{{program.slug}}">{{program.name}}</a></li>
@@ -126,8 +122,6 @@ All News
                                 </ul>
                             </li>
                             <li><a href="contact.html">Contact</a></li>
-                            <li><a href="/news/">News</a></li>
-                            <li><a href="/notice/">Notice</a></li>
                         </ul> <!-- /.main-menu -->
 
                         <ul class="social-icons pull-right">
@@ -151,85 +145,153 @@ All News
         <div class="page-title clearfix">
             <div class="row">
                 <div class="col-md-12">
-                    <h6><a href="/">Home</a></h6>
-                    <h6><a href="/news">All News</a></h6>
+                    <h6><a href="index.html">Home</a></h6>
+                    <h6><a href="blog.html">News</a></h6>
+                    <h6><span class="page-active">{{notice.title}}</span></h6>
                 </div>
             </div>
         </div>
     </div>
-<br>
+
 
     <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                <div class="search-form">
-                        <form name="search_form" method="get" action="#" class="search_form">
-                            <input type="text" name="s" placeholder="Search the site..." title="Search the site..." class="field_search">
-                        </form>
-                </div>
-                    <br>
-                <!-- Here begin Main Content -->
-                <div class="col-md-12">
+        <div class="row">
 
-                    <div class="row">
+            <!-- Here begin Main Content -->
+            <div class="col-md-8">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="blog-post-container">
+                            <div class="blog-post-image">
+                               {% if notice.image %}
+                                        <img src="{{notice.image.url}}" alt="{{notice.title}}">
+                                        {% else %}
+                                        <img src="{% static 'images/campus/campus-logo1.jpg' %}" alt="">
+                                        {% endif %}
+
+                            </div> <!-- /.blog-post-image -->
+                            <div class="blog-post-inner">
+                                <h3 class="blog-post-title">{{notice.title}}</h3>
+                                <p>
+                                {% autoescape on %}
+                                {{notice.content |safe}}
+                                {% endautoescape %}
+                                </p>
+
+                            </div>
+                        </div> <!-- /.blog-post-container -->
+                    </div> <!-- /.col-md-12 -->
+                </div> <!-- /.row -->
 
 
-        {% for n in news.object_list %}
-     <div class="panel-group" id="accordion">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h5>
-                <a data-toggle="collapse" data-parent="#accordion" href="#{{n.id}}">
-                     {{n.title}}
-                </a>
-                    <a href="/news/{{n.slug}}" style="float:right">&nbsp;&nbsp;View Details</a>
-                <p style="float:right">[&nbsp;{% if n.department %}{{n.department}}{% else %}{{n.program}}{% endif %}&nbsp;]</p>
-                </h5>
-            </div>
-        <div id="{{n.id}}" class="panel-collapse collapse">
-            <div class="panel-body">
-                {% autoescape on %}
-                {{n.content|safe}}
-                {% endautoescape %}
-        </div>
-    </div>
-</div>
 
-        {% endfor %}
 
-<br>
-{% if news.has_other_pages %}
-  <ul class="pagination justify-content-center">
-    {% if news.has_previous %}
-      <li class="page-item"><a class="page-link" tabindex="-1" href="?page={{ news.previous_page_number }}">Previous</a></li>
-    {% else %}
-      <li class="page-item page-link disabled"><span>Previous</span></li>
-    {% endif %}
-    {% for i in news.paginator.page_range %}
-      {% if news.number == i %}
-        <li class="page-link active-pg"><span>{{ i }} <span class="sr-only active">(current)</span></span></li>
-      {% else %}
-        <li class="page-item"><a class="page-link"href="?page={{ i }}">{{ i }}</a></li>
-      {% endif %}
-    {% endfor %}
-    {% if news.has_next %}
-      <li class="page-item"><a class="page-link" href="?page={{ news.next_page_number }}">Next</a></li>
-    {% else %}
-      <li class="page-item page-link disabled"><span>Next</span></li>
-    {% endif %}
-  </ul>
-{% endif %}
-<br><br><br>
 
-            </div>
-            </div>
-                </div>
-        </div>
-    </div> <!-- /.row -->
+            </div> <!-- /.col-md-8 -->
+
+            <!-- Here begin Sidebar -->
+            <div class="col-md-4">
+                <div class="widget-main">
+                    <div class="widget-main-title">
+                        <h4 class="widget-title">Head of Department</h4>
+                    </div>
+                    <div class="widget-inner">
+                        <div class="prof-list-item clearfix">
+                           <div class="prof-thumb">
+                                <img src="{{news.image.url}}" alt="{{dept.dean}}">
+                            </div> <!-- /.prof-thumb -->
+                            <div class="prof-details">
+                                <h5 class="prof-name-list">{{dept.dean}}</h5>
+                                <p class="small-text">Sed ut lectus ac lacus molestie posuere non tincidunt arcu.</p>
+                            </div> <!-- /.prof-details -->
+                        </div> <!-- /.prof-list-item -->
+
+
+                    </div> <!-- /.widget-inner -->
+                </div> <!-- /.widget-main -->
+
+
+
+
+                <div class="widget-main">
+                    <div class="widget-main-title">
+                        <h4 class="widget-title">Our Gallery</h4>
+                    </div>
+                    <div class="widget-inner">
+                        <div class="gallery-small-thumbs clearfix">
+                            <div class="thumb-small-gallery">
+                                <a class="fancybox" rel="gallery1" href="images/gallery/gallery1.jpg" title="Gallery Tittle One">
+                                    <img src="images/gallery/gallery-small-thumb1.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="thumb-small-gallery">
+                                <a class="fancybox" rel="gallery1" href="images/gallery/gallery2.jpg" title="Gallery Tittle One">
+                                    <img src="images/gallery/gallery-small-thumb2.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="thumb-small-gallery">
+                                <a class="fancybox" rel="gallery1" href="images/gallery/gallery3.jpg" title="Gallery Tittle One">
+                                    <img src="images/gallery/gallery-small-thumb3.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="thumb-small-gallery">
+                                <a class="fancybox" rel="gallery1" href="images/gallery/gallery4.jpg" title="Gallery Tittle One">
+                                    <img src="images/gallery/gallery-small-thumb4.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="thumb-small-gallery">
+                                <a class="fancybox" rel="gallery1" href="images/gallery/gallery5.jpg" title="Gallery Tittle One">
+                                    <img src="images/gallery/gallery-small-thumb5.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="thumb-small-gallery">
+                                <a class="fancybox" rel="gallery1" href="images/gallery/gallery6.jpg" title="Gallery Tittle One">
+                                    <img src="images/gallery/gallery-small-thumb6.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="thumb-small-gallery">
+                                <a class="fancybox" rel="gallery1" href="images/gallery/gallery7.jpg" title="Gallery Tittle One">
+                                    <img src="images/gallery/gallery-small-thumb7.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="thumb-small-gallery">
+                                <a class="fancybox" rel="gallery1" href="images/gallery/gallery8.jpg" title="Gallery Tittle One">
+                                    <img src="images/gallery/gallery-small-thumb8.jpg" alt="" />
+                                </a>
+                            </div>
+                        </div> <!-- /.galler-small-thumbs -->
+                    </div> <!-- /.widget-inner -->
+                </div> <!-- /.widget-main -->
+
+                <div class="widget-main">
+                    <div class="widget-main-title">
+                        <h4 class="widget-title">Testimonial</h4>
+                    </div>
+                    <div class="widget-inner">
+                        <div id="slider-testimonials">
+                            <ul>
+                                <li>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, quos, veniam optio voluptas hic delectus soluta odit nemo harum <strong class="dark-text">Shannon D. Edwards</strong></p>
+                                </li>
+                                <li>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, quos, veniam optio voluptas hic delectus soluta odit nemo harum <strong class="dark-text">Shannon D. Edwards</strong></p>
+                                </li>
+                                <li>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, quos, veniam optio voluptas hic delectus soluta odit nemo harum <strong class="dark-text">Shannon D. Edwards</strong></p>
+                                </li>
+                            </ul>
+                            <a class="prev fa fa-angle-left" href=""></a>
+                            <a class="next fa fa-angle-right" href=""></a>
+                        </div>
+                    </div> <!-- /.widget-inner -->
+                </div> <!-- /.widget-main -->
+
+            </div> <!-- /.col-md-4 -->
+
+        </div> <!-- /.row -->
     </div> <!-- /.container -->
-    </div>
 
-            </body>
 
     <!-- begin The Footer -->
     <footer class="site-footer">
