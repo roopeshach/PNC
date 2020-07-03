@@ -13,7 +13,7 @@ news = News.objects.all()[:3]
 notices = Notice.objects.all()[:3]
 events = Event.objects.all()[:3]
 messages = Message_From_Chief.objects.all().first()
-
+pages = Custom_Page.objects.all()
 
 context = {
     'content' : content,
@@ -25,6 +25,7 @@ context = {
     'notices':notices,
     'events':events,
     'messages' : messages,
+    'pages':pages,
 
 }
 

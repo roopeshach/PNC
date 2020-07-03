@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from .models import Department , Program , Custom_Page
 from home.models import Content
+from news.models import News , Notice , Event
+
+from django.db.models import Q
 
 # Create your views here.
 content = Content.objects.all().first()
@@ -13,7 +16,9 @@ pages = Custom_Page.objects.all().filter(is_active="T")
 def aboutDepartment(request, slug):
     
     dept = Department.objects.get(slug=slug)
-    
+    news = News.objects.filter(
+        Q(department=dept.id))
+
 
     context = {
     'content' : content,
@@ -21,6 +26,7 @@ def aboutDepartment(request, slug):
     'dept':dept,
     'programs' : programs,
     'pages' : pages,
+    'news':news,
     
     }
     return render(request, 'category/about.html' , context)
@@ -28,12 +34,15 @@ def aboutDepartment(request, slug):
 def aboutProgram(request, slug):
 
     program = Program.objects.get(slug=slug)
+    news = News.objects.filter(
+        Q(program=program.id))
     context_program = {
         'content' : content,
         'departments' : departments,
         'program' : program,
         'programs' : programs,
         'pages': pages,
+        'news':news,
     }
 
     return render(request , 'category/aboutProgram.html' , context_program)

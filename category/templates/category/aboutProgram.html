@@ -208,7 +208,36 @@
                     </div> <!-- /.widget-inner -->
                 </div> <!-- /.widget-main -->
                 
-
+                <!--NEWS for this dept-->
+                <div class="widget-main">
+                            <div class="widget-main-title">
+                                <h4 class="widget-title">Latest News</h4>
+                            </div> <!-- /.widget-main-title -->
+                            <div class="widget-inner">
+                                
+                                {% for n in news %}
+                                <div class="blog-list-post clearfix">
+                                    <div class="blog-list-thumb">
+                                        <a href="blog-single.html">
+                                        {% if n.image %}
+                                        <img src="{{n.image.url}}" alt="{{n.title}}">
+                                        {% else %}
+                                        <img src="{% static 'images/campus/campus-logo1.jpg' %}" alt="">
+                                        {% endif %}
+                                        
+                                        </a>
+                                    </div>
+                                    <div class="blog-list-details">
+                                        <h5 class="blog-list-title"><a href="/news/{{n.slug}}">{{n.title}}</a></h5>
+                                        <p class="blog-list-meta small-text">
+                                        {{n.content |safe|truncatewords:"7  "|linebreaks}}
+                                        <a href="#">read more</a>
+                                        </p>
+                                    </div>
+                                </div> <!-- /.blog-list-post -->
+                                {% endfor %}
+                            </div> <!-- /.widget-inner -->
+                        </div> <!-- /.widget-main -->
         
 
                 <div class="widget-main">
