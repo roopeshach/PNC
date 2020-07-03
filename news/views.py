@@ -43,7 +43,7 @@ def allNews(request):
     news_list = News.objects.all()
 
     page = request.GET.get('page', 1)
-    paginator = Paginator(news_list, 8)
+    paginator = Paginator(news_list, 2)
     try:
         news = paginator.page(page)
     except PageNotAnInteger:
@@ -66,7 +66,7 @@ def allNotice(request):
     notice_list = Notice.objects.all()
 
     page = request.GET.get('page', 1)
-    paginator = Paginator(notice_list, 8)
+    paginator = Paginator(notice_list, 2)
     try:
         notice = paginator.page(page)
     except PageNotAnInteger:

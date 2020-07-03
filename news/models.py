@@ -3,7 +3,6 @@ from category.models import Department, Program
 from tinymce import HTMLField
 from django.utils.text import slugify
 
-
 # Create your models here.
 class Event(models.Model):
     title = models.CharField(max_length=254)
@@ -11,10 +10,10 @@ class Event(models.Model):
     date = models.DateTimeField()
     image = models.ImageField(upload_to="events/")
 
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField( blank=True)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
+        self.slug = slugify(self.date) + "-" + slugify(self.title)
         super(Event, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -30,10 +29,10 @@ class News(models.Model):
     image = models.ImageField(upload_to="news/", null=True, blank=True)
     file = models.FileField(upload_to="news_file/", blank=True, null=True)
 
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
+        self.slug = slugify(self.date) + "-" + slugify(self.title)
         super(News, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -49,10 +48,10 @@ class Notice(models.Model):
     image = models.ImageField(upload_to="notice/", null=True, blank=True)
     file = models.FileField(upload_to="notice_file/", blank=True, null=True)
 
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField( blank=True)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
+        self.slug = slugify(self.date) + "-" + slugify(self.title)
         super(Notice, self).save(*args, **kwargs)
 
     def __str__(self):
