@@ -1,0 +1,311 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block title %}
+All News
+{% endblock title %}
+
+
+{% block content %}
+<body>
+
+    <!-- This one in here is responsive menu for tablet and mobiles -->
+    <div class="responsive-navigation visible-sm visible-xs">
+        <a class="menu-toggle-btn" href="#">
+            <i class="fa fa-bars"></i>
+        </a>
+        <div class="responsive_menu">
+            <ul class="main_menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Events</a>
+                    <ul>
+                        <li><a href="events-grid.html">Events Grid</a></li>
+                        <li><a href="events-list.html">Events List</a></li>
+                        <li><a href="event-single.html">Event Details</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Courses</a>
+                    <ul>
+                        <li><a href="courses.html">Course List</a></li>
+                        <li><a href="course-single.html">Course Single</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Blog Entries</a>
+                    <ul>
+                        <li><a href="blog.html">Blog Grid</a></li>
+                        <li><a href="blog-single.html">Blog Single</a></li>
+                        <li><a href="blog-disqus.html">Blog Disqus</a></li>
+                    </ul>
+                </li>
+                <li><a href="">Pages</a>
+                    <ul>
+                        <li><a href="archives.html">Archives</a></li>
+                        <li><a href="shortcodes.html">Shortcodes</a></li>
+                        <li><a href="gallery.html">Our Gallery</a></li>
+                    </ul>
+                </li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="/news/">News</a></li>
+                <li><a href="/notice/">Notice</a></li>
+            </ul> <!-- /.main_menu -->
+            <ul class="social_icons">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="#"><i class="fa fa-rss"></i></a></li>
+            </ul> <!-- /.social_icons -->
+        </div> <!-- /.responsive_menu -->
+    </div> <!-- /responsive_navigation -->
+
+
+    <header class="site-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 header-left">
+                    <p><i class="fa fa-phone"></i> {{content.phone}}</p>
+                    <p><i class="fa fa-envelope"></i> <a href="">{{content.email}}</a></p>
+                </div> <!-- /.header-left -->
+
+                <div class="col-md-4">
+                    <div class="logo">
+                        <a href="index.html" rel="home" title="PNC">
+                            <img alt="" src="{{content.logo_img.url}}">
+                        </a>
+                    </div> <!-- /.logo -->
+                </div> <!-- /.col-md-4 -->
+
+                <div class="col-md-4 header-right">
+                    <ul class="small-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Apply Now</a></li>
+                    </ul>
+                    <div class="search-form">
+                        <form action="#" class="search_form" method="get" name="search_form">
+                            <input class="field_search" name="s" placeholder="Search the site..." title="Search the site..." type="text">
+                        </form>
+                    </div>
+                </div> <!-- /.header-right -->
+            </div>
+        </div> <!-- /.container -->
+
+        <div class="nav-bar-main" role="navigation">
+            <div class="container">
+                <nav class="main-navigation clearfix visible-md visible-lg" role="navigation">
+                        <ul class="main-menu sf-menu">
+                            <li class="active"><a href="/">Home</a></li>
+                            <li><a href="#">Departments</a>
+                                <ul class="sub-menu">
+                                {% for department in departments %}
+                                <li><a href="/about/{{department.slug}}">{{department.name}}</a></li>
+                                {% endfor %}
+
+                                </ul>
+                            </li>
+                            <li><a href="#">Courses</a>
+                                <ul class="sub-menu">
+                                {% for program in programs %}
+                                <li><a href="/about_program/{{program.slug}}">{{program.name}}</a></li>
+                                {% endfor %}
+
+                                </ul>
+                            </li>
+                            <li><a href="#">Blog Entries</a>
+                                <ul class="sub-menu">
+                                    <li><a href="blog.html">Blog Grid</a></li>
+                                    <li><a href="blog-single.html">Blog Single</a></li>
+                                    <li><a href="blog-disqus.html">Blog Disqus</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Pages</a>
+                                <ul class="sub-menu">
+                                    <li><a href="archives.html">Archives</a></li>
+                                    <li><a href="shortcodes.html">Shortcodes</a></li>
+                                    <li><a href="gallery.html">Our Gallery</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="/news/">News</a></li>
+                            <li><a href="/notice/">Notice</a></li>
+                        </ul> <!-- /.main-menu -->
+
+                        <ul class="social-icons pull-right">
+                            <li><a data-toggle="tooltip" href="#" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li><a data-toggle="tooltip" href="#" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                            <li><a data-toggle="tooltip" href="#" title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
+                            <li><a data-toggle="tooltip" href="#" title="Google+"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a data-toggle="tooltip" href="#" title="RSS"><i class="fa fa-rss"></i></a></li>
+                        </ul> <!-- /.social-icons -->
+                </nav> <!-- /.main-navigation -->
+            </div> <!-- /.container -->
+        </div> <!-- /.nav-bar-main -->
+
+    </header> <!-- /.site-header -->
+
+
+
+
+    <!-- Being Page Title -->
+    <div class="container">
+        <div class="page-title clearfix">
+            <div class="row">
+                <div class="col-md-12">
+                    <h6><a href="/">Home</a></h6>
+                    <h6><a href="/news">All News</a></h6>
+                </div>
+            </div>
+        </div>
+    </div>
+<br>
+
+    <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Here begin Main Content -->
+                <div class="col-md-12">
+
+                    <div class="row">
+                        {% for n in news.object_list %}
+                    <div class="list-event-item" id="allNews">
+                            <div class="box-content-inner clearfix" id="allNews_inner">
+                                <div class="grid-event-header" >
+                                    <h4 class="event-title"><a href="/news/{{n.slug}}"> {{n.title}}</a>
+                                        <a class="pull-right" href="/news/{{n.slug}}">[&nbsp;{% if n.department %}{{n.department}}{% else %}{{n.program}}{% endif %}&nbsp;]</a>
+                                    </h4>
+                                </div>
+                                <div class="box-content-inner">
+                                    <p>
+                                        {% autoescape on %}
+                                        {{n.content|safe|truncatewords:"70"}}
+                                        {% endautoescape %}
+                                    </p>
+                                </div>
+                                <hr>
+                                <div class="grid-event-footer">
+                                    <span class="event-date text-dark">Date of Posted :   {{n.date}}</span>
+                                    <a class="btn btn-info pull-right" href="/news/{{n.slug}}">View More</a>
+                                </div>
+                            </div> <!-- /.box-content-inner -->
+                        </div> <!-- /.list-event-item -->
+                         {% endfor %}
+    <br>
+{% if news.has_other_pages %}
+  <ul class="pagination justify-content-center">
+    {% if news.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ news.previous_page_number }}" tabindex="-1">Previous</a></li>
+    {% else %}
+      <li class="page-item page-link disabled"><span>Previous</span></li>
+    {% endif %}
+    {% for i in news.paginator.page_range %}
+      {% if news.number == i %}
+        <li class="page-link active-pg"><span>{{ i }} <span class="sr-only active">(current)</span></span></li>
+      {% else %}
+        <li class="page-item"><a class="page-link"href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if news.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ news.next_page_number }}">Next</a></li>
+    {% else %}
+      <li class="page-item page-link disabled"><span>Next</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+<br><br><br>
+
+            </div>
+            </div>
+                </div>
+        </div>
+    </div> <!-- /.row -->
+    </div> <!-- /.container -->
+    </div>
+
+            </body>
+
+    <!-- begin The Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="footer-widget">
+                        <h4 class="footer-widget-title">Contact Us</h4>
+                        <p>{{content.address}} </p>
+
+                        <p>{{content.contact_info}}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="footer-widget">
+                        <h4 class="footer-widget-title">Favourites</h4>
+                        <ul class="list-links">
+                            <li><a href="#">A to Z Index</a></li>
+                            <li><a href="#">Admissions</a></li>
+                            <li><a href="#">Bookstore</a></li>
+                            <li><a href="#">Catalog / Classes</a></li>
+                            <li><a href="#">Dining</a></li>
+                            <li><a href="#">Financial Aid</a></li>
+                            <li><a href="#">Graduation</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="footer-widget">
+                        <h4 class="footer-widget-title">Pages</h4>
+                        <ul class="list-links">
+                        {% for p in pages  %}
+                        <li><a href="/pages/{{p.slug}}">{{p.name}}</a></li>
+                        {% endfor %}
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="footer-widget">
+                        <h4 class="footer-widget-title">Study</h4>
+                        <ul class="list-links">
+                            <li><a href="#">Courses</a></li>
+                            <li><a href="#">Apply Now</a></li>
+                            <li><a href="#">Scholarships</a></li>
+                            <li><a href="#">FAQs</a></li>
+                            <li><a href="#">International student enquiries</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="footer-widget">
+                        <ul class="footer-media-icons">
+                            <li><a class="fa fa-facebook" href="#"></a></li>
+                            <li><a class="fa fa-twitter" href="#"></a></li>
+                            <li><a class="fa fa-google-plus" href="#"></a></li>
+                            <li><a class="fa fa-youtube" href="#"></a></li>
+                            <li><a class="fa fa-linkedin" href="#"></a></li>
+                            <li><a class="fa fa-instagram" href="#"></a></li>
+                            <li><a class="fa fa-apple" href="#"></a></li>
+                            <li><a class="fa fa-rss" href="#"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div> <!-- /.row -->
+
+            <div class="bottom-footer">
+                <div class="row">
+                    <div class="col-md-5">
+                        <p class="small-text">&copy; Copyright 2014. Universe designed by <a href="#">Esmeth</a></p>
+                    </div> <!-- /.col-md-5 -->
+                    <div class="col-md-7">
+                        <ul class="footer-nav">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="courses.html">Courses</a></li>
+                            <li><a href="events-list.html">Events</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="shortcodes.html">Shortcodes</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div> <!-- /.col-md-7 -->
+                </div> <!-- /.row -->
+            </div> <!-- /.bottom-footer -->
+
+        </div> <!-- /.container -->
+    </footer> <!-- /.site-footer -->
+{% endblock content %}
