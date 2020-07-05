@@ -167,7 +167,16 @@ Events
                     <div class="col-md-12">
                         <div class="blog-post-container">
                             <div class="blog-post-image">
-                                <img src="{{event.image.url}}" alt="{{event.title}}">
+                                        <div class="flexslider">
+                                <ul class="slides">
+                                    {% for image in images %}
+                                        <li>
+                                        <img src="{{image.image.url}}" />
+                                    </li>
+                                    {% endfor %}
+                                
+                                </ul> <!-- /.slides -->
+                            </div> <!-- /.flexslider -->
 
                             </div> <!-- /.blog-post-image -->
                             <div class="blog-post-inner">

@@ -167,12 +167,16 @@
                     <div class="col-md-12">
                         <div class="blog-post-container">
                             <div class="blog-post-image">
-                               {% if notice.image %}
-                                        <img src="{{notice.image.url}}" alt="{{notice.title}}">
-                                        {% else %}
-                                        <img src="{% static 'images/campus/campus-logo1.jpg' %}" alt="">
-                                        {% endif %}
-
+                                      <div class="flexslider">
+                                <ul class="slides">
+                                    {% for image in images %}
+                                        <li>
+                                        <img src="{{image.image.url}}" />
+                                    </li>
+                                    {% endfor %}
+                                
+                                </ul> <!-- /.slides -->
+                            </div> <!-- /.flexslider -->
                             </div> <!-- /.blog-post-image -->
                             <div class="blog-post-inner">
                                 <h3 class="blog-post-title">{{notice.title}}</h3>
