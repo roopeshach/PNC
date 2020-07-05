@@ -1,20 +1,35 @@
 from django.contrib import admin
-from .models import Event, News, Notice
+from .models import Event, News, Notice , NewsImage , NoticeImage , EventImage
 
 
 # Register your models here.
-class event(admin.ModelAdmin):
+class EventImageTabularInline(admin.TabularInline):
+    model = EventImage
+    class Meta:
+        model = Event
+        
+class EventAdmin(admin.ModelAdmin):
+    inlines = [EventImageTabularInline]
     list_display = ['title', 'date']
 
-
-class news(admin.ModelAdmin):
+class NewsImageTabularInline(admin.TabularInline):
+    model = NewsImage
+    class Meta:
+        model = News
+        
+class NewsAdmin(admin.ModelAdmin):
+    inlines = [NewsImageTabularInline]
     list_display = ['title', 'date']
 
-
-class notice(admin.ModelAdmin):
+class NoticeImageTabularInline(admin.TabularInline):
+    model = NoticeImage
+    class Meta:
+        model = Notice
+        
+class NoticeAdmin(admin.ModelAdmin):
+    inlines = [NoticeImageTabularInline]
     list_display = ['title', 'date']
 
-
-admin.site.register(Event, event)
-admin.site.register(News, news)
-admin.site.register(Notice, notice)
+admin.site.register(Event, EventAdmin)
+admin.site.register(News, NewsAdmin)
+admin.site.register(Notice, NoticeAdmin)

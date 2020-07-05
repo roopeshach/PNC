@@ -9,7 +9,6 @@ class Event(models.Model):
     title = models.CharField(max_length=254)
     content = HTMLField()
     date = models.DateTimeField()
-    image = models.ImageField(upload_to="events/")
     slug = models.SlugField(blank=True)
 
     def save(self, *args, **kwargs):
@@ -56,3 +55,27 @@ class Notice(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class NewsImage(models.Model):
+    news = models.ForeignKey(News,  on_delete=models.CASCADE)
+    image = models.ImageField( upload_to="news/")
+
+    def __str__(self):
+        return self.news.title
+
+class NoticeImage(models.Model):
+    notice = models.ForeignKey(Notice,  on_delete=models.CASCADE)
+    image = models.ImageField( upload_to="notice/")
+
+    def __str__(self):
+        return self.notice.title
+
+class EventImage(models.Model):
+    event = models.ForeignKey(Event,  on_delete=models.CASCADE)
+    image = models.ImageField( upload_to="event/")
+
+    def __str__(self):
+        return self.event.title
+
+    
