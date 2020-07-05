@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'tinymce',
     'category',
     'news',
+    'gallery'
 ]
 
 MIDDLEWARE = [

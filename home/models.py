@@ -8,6 +8,7 @@ class Content(models.Model):
     address = models.CharField(max_length=254)
     contact_info = models.TextField()
     logo_img = models.ImageField(upload_to="images/")
+    header_text = models.CharField( max_length=254)
 
 
 class Slider(models.Model):
