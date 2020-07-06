@@ -14,7 +14,7 @@ class DepartmentGallery(models.Model):
     image = models.ImageField( upload_to="gallery/department/")
 
     def __str__(self):
-        return self.title
+        return self.title.image_title
 
 class ProgramImage(models.Model):
     image_title = models.CharField( max_length=254)
@@ -29,4 +29,4 @@ class ProgramGallery(models.Model):
     image = models.ImageField( upload_to="gallery/program/")
 
     def __str__(self):
-        return self.title
+        return self.title.image_title
